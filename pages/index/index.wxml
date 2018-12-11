@@ -1,0 +1,17 @@
+<!--index.wxml-->
+  <view class = 'newsNavigator'>
+    <view wx:for="{{newsType}}" class = "{{currentId == item.id?'newsType.selected':'newsType.unselect'}}" bindtap='isSelected'  data-id="{{item.id}}">{{item.title}}
+    </view>
+  </view>
+  <view class='topNews'>
+    <image class='topBgImage' src="/images/bg.jpg" mode="aspectFill"></image>
+    <image class='topImage' src="{{topImage}}" mode="scaleToFill"></image>
+    <view class='hot'>热门</view>
+    <view class='topTitle'>{{topTitle}}</view>
+    <view class='sourceAndTime'>    
+      <view class='source'>{{topSource}}</view>
+      <view class='time'>{{topTime}}</view>
+    </view> 
+  </view>
+
+
