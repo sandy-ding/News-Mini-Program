@@ -1,32 +1,53 @@
 //index.js
 //获取应用实例
 const newsType = [
-  { id: 0, type: "gn", title:"国内"},
-  { id: 1, type: "gj", title:"国际"},
-  { id: 2, type: "cj", title: "财经"},
-  { id: 3, type: "yl", title: "娱乐"},
-  { id: 4, type: "js", title: "军事"},
-  { id: 5, type: "ty", title: "体育"},
-  { id: 6, type: "other", title: "其他"},
+  { type: "gn", title:"国内"},
+  { type: "gj", title:"国际"},
+  { type: "cj", title: "财经"},
+  { type: "yl", title: "娱乐"},
+  { type: "js", title: "军事"},
+  { type: "ty", title: "体育"},
+  { type: "other", title: "其他"},
 ]
 
 Page({
   data: {
-    newsType : newsType,
-    currentId: 0,
+    newsType:newsType,
     currentType:"gn",
     topImage:'',
     topTitle:"",
     topSource: "",
     topTime: ""
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  onPullDownRefresh() {
+    this.getNews(() => {
+      wx.stopPullDownRefresh()
     })
   },
   onLoad: function () {
+    this.setNavigationBar()
+    this.getNews(() => {
+      wx.stopPullDownRefresh()
+    })
+  },
+  setNavigationBar(){
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#36a6e9',
+    });
+    wx.setNavigationBarTitle({
+      title: "快读·资讯"
+    })
+  },
+  isSelected:function(e){
+    this.setData({
+      currentType: e.currentTarget.dataset.id
+    })
+    this.getNews(() => {
+      wx.stopPullDownRefresh()
+    })
+  },
+  getNews(callback) {
     wx.request({
       url: "https://test-miniprogram.com/api/news/list",
       data: {
@@ -36,23 +57,15 @@ Page({
         let result = res.data.result
         console.log(result)
         this.setTopNews(result)
+        this.setNewsList(result)
+      },
+      complete: () => {
+        callback && callback()
       },
       fail: () => {
         console.log("failed")
       }
     })
-    wx.setNavigationBarColor({
-      frontColor: '#ffffff',
-      backgroundColor: '#36a6e9',
-    })
-    wx.setNavigationBarTitle({
-      title:"快读·资讯"
-    })
-  },
-  isSelected:function(e){
-    this.setData({
-      currentId: e.currentTarget.dataset.id
-    });
   },
   setTopNews(result){
     let topNews = result[0]
@@ -60,7 +73,33 @@ Page({
       topImage: topNews.firstImage,
       topTitle: topNews.title,
       topSource: topNews.source,
-      topTime: topNews.date
+      topTime: topNews.date.substring(11,16)
+    })
+  },
+  setNewsList(result){
+    let newsList = []
+    for (let i = 1; i < result.length; i += 1){
+      newsList.push({
+        title: result[i].title,
+        source:result[i].source,
+        time: result[i].date.substring(11,16),
+        image: result[i].firstImage,
+        id:result[i].id
+      })
+    }
+    for (let i = 0; i < newsList.length; i += 1) {
+      if (newsList[i].source == ""){
+        newsList[i].source = "未知来源";
+      }
+    }
+    this.setData({
+      newsList: newsList
+    })
+  },
+  onTapDetail:function(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + id
     })
   }
 })

@@ -7,23 +7,39 @@
   background-color:rgb(54, 166, 233);
 }
 
-.newsType.unselect {
-  color:rgba(255,255,255, 0.5);
-  width:150rpx;
+.underLine{
+  background: rgba(255,255,255, 0.75);
+  margin-left:37rpx;
+  margin-top: 5rpx;
+  width: 30%;
+  height: 6rpx;
+}
+
+.unselect {
+  color:rgba(255,255,255, 0.75);
+  width:107rpx;
   text-align: center;
   font-size: 30rpx;
 }
 
-.newsType.selected {
+.selected {
   color:rgb(255,255,255);
-  width:150rpx;
+  width:108rpx;
   text-align: center;
   font-size: 35rpx;
 }
 
+.underLine{
+ background: rgba(255,255,255, 0.75);
+ margin-left:37rpx;
+ margin-top: 5rpx;
+ width: 30%;
+ height: 6rpx;
+}
+
 .topNews{
-  padding-top: 25rpx;
-  padding-bottom: 25rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   padding-left: 25rpx;
   padding-right: 25rpx;
   align-items: center;
@@ -58,9 +74,13 @@
   border-radius: 20rpx;
 }
 
+.topInfo{
+    height: 135rpx;
+    padding-left: 20rpx;
+}
+
 .topTitle{
   position: relative;
-  padding-left: 20rpx;
   top:-650rpx;
   font-size: 30rpx;
   color:rgb(255,255,255);
@@ -68,22 +88,50 @@
 
 .sourceAndTime{
   position: relative;
-  padding-left: 20rpx;
+  padding-top:20rpx;
   top:-670rpx;
   display: flex;
-  color:rgb(206, 206, 206);
+  color:rgb(175, 175, 175);
+  font-size: 24rpx;
+}
+
+.newsList{
+  height:200rpx;
+  padding-left: 25rpx;
+  margin-bottom: 25rpx;
+  position: relative;
+  top: -620rpx;
+}
+
+.newsInfo{
+  position: absolute;
+  width: 500rpx;
+  font-size: 30rpx;
+  padding-left: 5rpx;
+}
+
+.timeAndSource{
+  position: relative;
+  padding-top:10rpx;
+  display: flex;
+  color:rgb(151, 150, 150);
+  font-size: 24rpx;
+}
+
+.newsImage{
+  height:130rpx;
+  width:180rpx;
+  padding-left:515rpx;
+}
+
+.divLine{
+ background: #E0E3DA;
+ width: 96%;
+ height: 2rpx;
+ margin-top: 15rpx;
+ margin-bottom: 25rpx;
 }
 
 .time{
-  padding-left: 20rpx;
-  padding-top:20rpx;
-  font-size: 24rpx;
-  color:rgb(206, 206, 206);
-}
-
-.source{
-  padding-left: 20rpx;
-  padding-top:20rpx;
-  font-size: 24rpx;
-  color:rgb(206, 206, 206);
+  padding-left: 40rpx;
 }
