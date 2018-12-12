@@ -91,7 +91,7 @@
   padding-top:20rpx;
   top:-670rpx;
   display: flex;
-  color:rgb(175, 175, 175);
+  color:rgb(150, 150, 150);
   font-size: 24rpx;
 }
 
@@ -114,7 +114,7 @@
   position: relative;
   padding-top:10rpx;
   display: flex;
-  color:rgb(151, 150, 150);
+  color:rgb(150, 150, 150);
   font-size: 24rpx;
 }
 

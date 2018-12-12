@@ -1,4 +1,4 @@
-// pages/detail/detail.js
+// pages/detail/detail.js 
 Page({
   data: {
     title: "",
@@ -6,7 +6,7 @@ Page({
     time: "",
     readCount: 0
   },
-  onLoad(options){
+  onLoad(options) {
     this.setNavigationBar()
     let id = options.id
     this.getNews(id)
@@ -36,7 +36,7 @@ Page({
       }
     })
   },
-  render(result){
+  render(result) {
     let source = result.source
     let content = []
     if (source == "") {
@@ -44,17 +44,17 @@ Page({
     }
     for (let i = 0; i < result.content.length; i += 1) {
       content.push({
-        type:result.content[i].type,
-        text:result.content[i].text,
+        type: result.content[i].type,
+        text: result.content[i].text,
         src: result.content[i].src
       })
     }
     this.setData({
       title: result.title,
-      source:source,
+      source: source,
       time: result.date.substring(11, 16),
-      readCount:result.readCount,
-      content:content
+      readCount: result.readCount,
+      content: content
     })
   }
 })
