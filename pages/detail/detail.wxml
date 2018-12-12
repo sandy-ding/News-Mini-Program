@@ -1,0 +1,14 @@
+<view class="divLine"></view>
+<view class='pageContainer'>
+  <view class='title'>{{title}}</view>
+  <view class='infoContainer'>
+    <view>{{source}}</view>
+    <view class='time'>{{time}}</view>
+    <view class='readCount'>阅读 {{readCount}}</view>
+  </view>
+  <view wx:for="{{content}}">
+    <image class='image' wx:if="{{item.type=='image'}}" src="{{item.src}}" mode="aspectFill"></image>
+    <view class='text' wx:if="{{item.type=='p'}}">{{item.text}}</view>
+    <view class='text strong' wx:if="{{item.type=='strong'}}">{{item.text}}</view>
+  </view>
+</view>

@@ -1,17 +1,35 @@
 <!--index.wxml-->
   <view class = 'newsNavigator'>
-    <view wx:for="{{newsType}}" class = "{{currentId == item.id?'newsType.selected':'newsType.unselect'}}" bindtap='isSelected'  data-id="{{item.id}}">{{item.title}}
+    <view wx:for="{{newsType}}">
+      <view class = "{{currentType == item.type?'selected':'unselect'}}" bindtap='isSelected'  data-id="{{item.type}}">{{item.title}}</view>
+      <view class='underLine' style="display:{{currentType == item.type?'flex': 'none'}}" data-id="{{item.type}}"></view>
     </view>
   </view>
   <view class='topNews'>
     <image class='topBgImage' src="/images/bg.jpg" mode="aspectFill"></image>
-    <image class='topImage' src="{{topImage}}" mode="scaleToFill"></image>
+    <image class='topImage' src="{{topImage}}" mode="aspectFill" ></image>
     <view class='hot'>热门</view>
+    <view class='topInfo'>
     <view class='topTitle'>{{topTitle}}</view>
-    <view class='sourceAndTime'>    
-      <view class='source'>{{topSource}}</view>
-      <view class='time'>{{topTime}}</view>
+      <view class='sourceAndTime'>    
+        <view class='source' wx:if="{{length>0}}">{{topSource}}</view>
+        <view class='source' wx:else>未知来源</view>
+        <view class='time'>{{topTime}}</view>
+    </view>
     </view> 
+  </view>
+  <view class = 'newsList'>
+    <view class = 'newsItem' wx:for="{{newsList}}" bindtap='onTapDetail' data-id="{{item.id}}">
+      <view  class = 'newsInfo'>
+        <view>{{item.title}}</view>
+        <view class='timeAndSource'> 
+          <view class='newsSource'>{{item.source}}</view>
+          <view class='time'>{{item.time}}</view>
+        </view>
+      </view>
+      <image class='newsImage' mode="aspectFill" src="{{item.image}}"></image>
+      <view class="divLine"></view>
+    </view>
   </view>
 
 
