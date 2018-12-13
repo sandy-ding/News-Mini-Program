@@ -27,17 +27,13 @@
   padding-top:20rpx; 
   padding-bottom:20rpx; 
 } 
- 
-.source{ 
-  left:35rpx;  
-} 
- 
+
 .time{ 
   padding-left: 60rpx; 
 } 
  
 .readCount{ 
-  padding-left: 200rpx; 
+  padding-left: 220rpx; 
 } 
  
 .text{ 

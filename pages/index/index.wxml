@@ -5,7 +5,7 @@
       <view class='underLine' style="display:{{currentType == item.type?'flex': 'none'}}" data-id="{{item.type}}"></view>
     </view>
   </view>
-  <view class='topNews'>
+  <view class='topNews' bindtap='onTapDetail' data-id="{{topId}}">
     <image class='topBgImage' src="/images/bg.jpg" mode="aspectFill"></image>
     <image class='topImage' src="{{topImage}}" mode="aspectFill" ></image>
     <view class='hot'>热门</view>

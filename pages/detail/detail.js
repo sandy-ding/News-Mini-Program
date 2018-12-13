@@ -32,7 +32,10 @@ Page({
         this.render(result)
       },
       fail: () => {
-        console.log("failed")
+        wx.showToast({
+          title: '获取失败',
+          duration: 2000
+        })
       }
     })
   },

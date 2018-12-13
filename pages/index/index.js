@@ -14,6 +14,7 @@ Page({
   data: {
     newsType:newsType,
     currentType:"gn",
+    topId:0,
     topImage:'',
     topTitle:"",
     topSource: "",
@@ -63,13 +64,20 @@ Page({
         callback && callback()
       },
       fail: () => {
-        console.log("failed")
+        wx.showToast({
+          title: '获取失败',
+          duration: 2000
+        })
       }
     })
   },
   setTopNews(result){
     let topNews = result[0]
+    if (topNews.firstImage == "") {
+      topNews.firstImage = "/images/default.jpg";
+    }
     this.setData({
+      topId:topNews.id,
       topImage: topNews.firstImage,
       topTitle: topNews.title,
       topSource: topNews.source,
@@ -78,7 +86,7 @@ Page({
   },
   setNewsList(result){
     let newsList = []
-    for (let i = 1; i < result.length; i += 1){
+    for (let i = 0; i < result.length; i += 1){
       newsList.push({
         title: result[i].title,
         source:result[i].source,
@@ -90,6 +98,9 @@ Page({
     for (let i = 0; i < newsList.length; i += 1) {
       if (newsList[i].source == ""){
         newsList[i].source = "未知来源";
+      }
+      if (newsList[i].image == "") {
+        newsList[i].image = "/images/default.jpg";
       }
     }
     this.setData({
